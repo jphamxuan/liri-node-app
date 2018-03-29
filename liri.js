@@ -39,8 +39,10 @@ function spotifyGetter (query){
 		console.log('Artist: ' + song.artists[0].name);
 		console.log('Song: ' + song.name);
 		console.log('Link: ' + song.external_urls.spotify);
-		console.log('Album: ' + song.album.name);
-	
+        console.log('Album: ' + song.album.name);
+        var songData = [song.artists[0].name,song.name,song.external_urls.spotify,];
+//logs spotify data
+        fs.appendFile('log.txt',songData,function(err){if(err)return console.log(err)});
 	});
 }
 
@@ -60,13 +62,15 @@ function movieGetter (query){
 			console.log('Language: ' + movie.Language);
             console.log('Plot: ' + movie.Plot);
             console.log('Cast: ' + movie.Actors);
-			
+//logs omdb data	
 			var movieData = [movie.Title, movie.Ratings[0].Value,movie.Ratings[1].Value,movie.Country,movie.Language,movie.Actors,movie.Plot];
 			fs.appendFile('log.txt',movieData,function(err){if(err)return console.log(err)});
 		}
 	});
 }
+//do what it says
 function parseFunc (){
+//reads random.txt file
 	fs.readFile('random.txt','utf8',function(err,data){
 		if(err)return console.log(err);
 		data = data.split(',');
