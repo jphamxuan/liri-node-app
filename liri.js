@@ -89,7 +89,11 @@ function parseFunc (){
 		}
 	});
 }
+
+//logs what is inputed into log.txt
 fs.appendFile('log.txt','\n\n#' + process.argv[2] + '\n\n', function(err){if(err)return console.log(err)});
+
+//runs function depending on what is inputed into node.
 switch(process.argv[2]){
 	case 'my-tweets':
 		myTweets();
